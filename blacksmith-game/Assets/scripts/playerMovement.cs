@@ -7,6 +7,8 @@ public class playerMovement : MonoBehaviour
   Rigidbody2D body;
   SpriteRenderer renderer;
 
+  public GameObject panel;
+
   float horizontal;
   float vertical;
   float moveLimiter = 0.7f;
@@ -29,9 +31,17 @@ public class playerMovement : MonoBehaviour
       renderer.flipX = true;
     }
 
+
+
   }
 
   void FixedUpdate() {
+
+    if (panel.active == true) {
+      horizontal = 0;
+      vertical = 0;
+    }
+
     if (horizontal != 0 && vertical != 0) {
       horizontal *= moveLimiter;
       vertical *= moveLimiter;

@@ -6,9 +6,13 @@ public class rightClickPopUp : MonoBehaviour
 {
 
     public GameObject panel;
-    public Transform player;
+    public GameObject player;
+    public GameObject obj;
 
     public float minDist = 3;
+    public float dist;
+
+    public bool panelOn = false;
 
     // Start is called before the first frame update
     void Start()
@@ -19,14 +23,17 @@ public class rightClickPopUp : MonoBehaviour
 
     void Update()
     {
-
+        dist = Vector3.Distance(player.transform.position, obj.transform.position);
     }
 
-    void OnMouseOver() {
-        float dist = Vector3.Distance(player.position, transform.position);
+    public void OnMouseOver() {
+
         if(dist < minDist) {
             if (Input.GetMouseButtonDown(1)) {
                 panel.SetActive(true);
+                panelOn = true;
+            } else {
+                panelOn = false;
             }
         }
     }

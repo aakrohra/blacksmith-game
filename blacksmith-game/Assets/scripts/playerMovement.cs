@@ -8,6 +8,9 @@ public class playerMovement : MonoBehaviour
   SpriteRenderer renderer;
 
   public GameObject panel;
+  public GameObject panel2;
+
+  public GameObject panelcheck;
 
   float horizontal;
   float vertical;
@@ -18,6 +21,8 @@ public class playerMovement : MonoBehaviour
   void Start () {
     body = GetComponent<Rigidbody2D>();
     renderer = GetComponent<SpriteRenderer>();
+
+    // panelcheck = GameObject.FindGameObjectWithTag("mainObjects");
   }
 
   void Update() {
@@ -30,17 +35,14 @@ public class playerMovement : MonoBehaviour
     if (horizontal < 0) {
       renderer.flipX = true;
     }
-
-
-
   }
 
   void FixedUpdate() {
 
-    if (panel.active == true) {
-      horizontal = 0;
-      vertical = 0;
-    }
+    // if (mainObjects.GetComponent<rightClickPopUp>.panelOn == true) {
+    //   horizontal = 0;
+    //   vertical = 0;
+    // }
 
     if (horizontal != 0 && vertical != 0) {
       horizontal *= moveLimiter;

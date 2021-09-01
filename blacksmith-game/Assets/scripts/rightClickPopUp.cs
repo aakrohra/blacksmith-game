@@ -6,8 +6,8 @@ public class rightClickPopUp : MonoBehaviour
 {
 
     public GameObject panel;
-    public GameObject player;
-    public GameObject obj;
+    public Transform player;
+    public Transform obj;
 
     public float minDist = 3;
     public float dist;
@@ -23,7 +23,7 @@ public class rightClickPopUp : MonoBehaviour
 
     void Update()
     {
-        dist = Vector3.Distance(player.transform.position, obj.transform.position);
+        dist = Vector3.Distance(player.position, obj.position);
     }
 
     public void OnMouseOver() {

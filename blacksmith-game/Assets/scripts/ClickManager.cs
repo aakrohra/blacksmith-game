@@ -5,14 +5,32 @@ using UnityEngine.SceneManagement;
 
 public class ClickManager : MonoBehaviour
 {
+    
     public string levelName = "";
     public bool clickedOnDoor = false;
     public int dist;
     public Transform player;
 
+    public GameObject[] pc;
+   
+
+    void Start()
+    {
+        pc = GameObject.FindGameObjectsWithTag("Door");
+        
+
+    }
     // Update is called once per frame
     void Update()
     {   
+        for (int i = 0; i < pc.Length; i++)
+        {
+            if (pc[i].GetComponent<rightClickDoor>().canUseDoor)
+            {
+                Debug.Log("ur mom stinks");
+            }
+        }
+        
         if (Input.GetMouseButtonDown(1))
         {
             Debug.Log("Right Click");
@@ -47,21 +65,17 @@ public class ClickManager : MonoBehaviour
                 if (clickedOnDoor)
                 {
                     //dist = Vector3.Distance(player.position, thing.position);
-                    if (dist < 1.1)
-                    {
-                        SceneManager.LoadScene(levelName);
-                    }
-                        
+                    
                 }
 
 
                 //do another switch for if door, load scene(levelName)
-                   
+
                 //if (hit.collider.gameObject.name = "actual door")
                 //{
                 //    rightClickDoor();
                 //}
-                
+
                 //would give us the name of the hit gameobject, then add a force to its rigidbody
                 //Debug.Log(hit.collider.gameObject.name);
                 //hit.ccollider.attachedRigidbody.AddForcce(Vector2.up);

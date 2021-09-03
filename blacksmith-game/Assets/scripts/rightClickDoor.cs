@@ -3,41 +3,23 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
+
+
 public class rightClickDoor : MonoBehaviour
 {
 
-    public Transform player;
-    public Transform door;
-    
-    
+    public bool canUseDoor = false;
 
-   
-
-    public float minDist = 3;
-    public float dist;
-
-    public string levelName;
-
-    void Start()
+    public void OnTriggerEnter2D(Collider2D other)
     {
+        canUseDoor = true;
     }
 
-    // Update is called once per frame
-
-    void Update()
+    public void OnTriggerExit2D(Collider2D other)
     {
-        dist = Vector3.Distance(player.position, door.position);
-        if (dist < minDist)
-        {
-            OnMouseOver();
-        }
+        canUseDoor = false;
     }
 
-    void OnMouseOver()
-    {
-        if (Input.GetMouseButtonDown(1))
-        {
-            SceneManager.LoadScene(levelName);
-        }
-    }
+  
+
 }

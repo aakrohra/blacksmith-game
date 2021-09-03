@@ -13,13 +13,17 @@ public class playerMovement : MonoBehaviour
 
   public float runSpeed = 20.0f;
 
-  public GameObject[] pc;
+  public GameObject[] panels;
 
   void Start () {
     body = GetComponent<Rigidbody2D>();
     renderer = GetComponent<SpriteRenderer>();
 
-    pc = GameObject.FindGameObjectsWithTag("mainObjects");
+    // panels = GameObject.FindGameObjectsWithTag("UIPanel");
+    // for (int i = 0; i < panels.Length; i++) {
+    //   panels[i].SetActive(false);
+    // }
+
   }
 
   void Update() {
@@ -33,8 +37,11 @@ public class playerMovement : MonoBehaviour
       renderer.flipX = true;
     }
 
-    for (int i = 0; i < pc.Length; i++) {
-      if (pc[i].GetComponent<rightClickPopUp>().panelOn == true) {
+    // REMOVE WHEN BUILDING EXE
+    panels = GameObject.FindGameObjectsWithTag("UIPanel");
+
+    for (int i = 0; i < panels.Length; i++) {
+      if (panels[i].active == true) {
         horizontal = 0;
         vertical = 0;
       }

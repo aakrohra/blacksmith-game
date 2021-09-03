@@ -5,32 +5,30 @@ using UnityEngine.SceneManagement;
 
 public class ClickManager : MonoBehaviour
 {
-    
+
     public string levelName = "";
     public bool clickedOnDoor = false;
+    public bool clickedOnAnvil = false;
+    public bool clickedOnFurnace = false;
+    public bool anvilPanelOn = false;
+    public bool furnacePanelOn = false;
     public int dist;
     public Transform player;
 
+    public GameObject anvilPanel;
+    public GameObject furnacePanel;
+
     public GameObject[] pc;
-   
+
 
     void Start()
     {
-        pc = GameObject.FindGameObjectsWithTag("Door");
-        
+        pc = GameObject.FindGameObjectsWithTag("mainObjects");
 
     }
     // Update is called once per frame
     void Update()
-    {   
-        for (int i = 0; i < pc.Length; i++)
-        {
-            if (pc[i].GetComponent<rightClickDoor>().canUseDoor)
-            {
-                Debug.Log("ur mom stinks");
-            }
-        }
-        
+    {
         if (Input.GetMouseButtonDown(1))
         {
             Debug.Log("Right Click");
@@ -57,15 +55,57 @@ public class ClickManager : MonoBehaviour
                         levelName = "StartingArea";
                         clickedOnDoor = true;
                         break;
+                    case "actual anvil":
+                        clickedOnAnvil = true;
+                        break;
+                    case "actual furnace":
+                        clickedOnFurnace = true;
+                        break;
                     default:
                         clickedOnDoor = false;
+                        clickedOnAnvil = false;
                         break;
                 }
 
                 if (clickedOnDoor)
                 {
                     //dist = Vector3.Distance(player.position, thing.position);
-                    
+                    for (int i = 0; i < pc.Length; i++)
+                    {
+                        try {
+                          if (pc[i].GetComponent<rightClickDoor>().canUseDoor)
+                          {
+                            SceneManager.LoadScene(levelName);
+                          }
+                        } catch {}
+                    }
+
+                }
+
+                if (clickedOnAnvil) {
+                    for (int i = 0; i < pc.Length; i++) {
+                        try {
+                            if (pc[i].GetComponent<rightClickAnvil>().canUseAnvil) {
+                                anvilPanel.SetActive(true);
+                                anvilPanelOn = true;
+                            } else {
+                                anvilPanelOn = false;
+                            }
+                        } catch {}
+                    }
+                }
+
+                if (clickedOnFurnace) {
+                    for (int i = 0; i < pc.Length; i++) {
+                        try {
+                            if (pc[i].GetComponent<rightClickFurnace>().canUseFurnace) {
+                                furnacePanel.SetActive(true);
+                                furnacePanelOn = true;
+                            } else {
+                                furnacePanelOn = false;
+                            }
+                        } catch {}
+                    }
                 }
 
 
@@ -85,9 +125,9 @@ public class ClickManager : MonoBehaviour
         if (Input.GetMouseButtonDown(0))
         {
             Debug.Log("Left Click");
-            
+
         }
     }
 
-   
+
 }

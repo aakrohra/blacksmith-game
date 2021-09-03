@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -24,6 +24,12 @@ public class rightClickPopUp : MonoBehaviour
     void Update()
     {
         dist = Vector3.Distance(player.position, obj.position);
+
+        if (panel.active == true) {
+          panelOn = true;
+        } else {
+          panelOn = false;
+        }
     }
 
     public void OnMouseOver() {
@@ -31,9 +37,6 @@ public class rightClickPopUp : MonoBehaviour
         if(dist < minDist) {
             if (Input.GetMouseButtonDown(1)) {
                 panel.SetActive(true);
-                panelOn = true;
-            } else {
-                panelOn = false;
             }
         }
     }

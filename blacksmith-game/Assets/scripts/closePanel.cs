@@ -9,8 +9,9 @@ public class closePanel : MonoBehaviour
 
     public void panelClose() {
         panel.SetActive(false);
+        Debug.Log("closing panel");
     }
 
 
-   
+
 }

@@ -8,6 +8,8 @@ public class rightClickDoor : MonoBehaviour
 
     public Transform player;
     public Transform door;
+    
+    
 
    
 
@@ -25,18 +27,17 @@ public class rightClickDoor : MonoBehaviour
     void Update()
     {
         dist = Vector3.Distance(player.position, door.position);
-    }
-
-    public void OnMouseOver()
-    {
-
         if (dist < minDist)
         {
-            if (Input.GetMouseButtonDown(1))
-            {
-                SceneManager.LoadScene(levelName);
-                Debug.Log("yeet");
-            }
+            OnMouseOver();
+        }
+    }
+
+    void OnMouseOver()
+    {
+        if (Input.GetMouseButtonDown(1))
+        {
+            SceneManager.LoadScene(levelName);
         }
     }
 }
